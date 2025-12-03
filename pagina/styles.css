@@ -1,0 +1,189 @@
+/* ---------------------------------------------------
+   VARIABLES Y CONFIGURACIÓN BASE
+--------------------------------------------------- */
+:root {
+  --color-principal: #e85d3f;    /* Rojo-naranja marca */
+  --color-hover: #cf4c30;        /* Variación oscura para hover */
+  --color-secundario: #fdf2ee;   /* Fondo muy suave */
+  --color-texto: #333333;
+  --font-main: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--color-texto);
+  background-color: #ffffff;
+  overflow-x: hidden; /* Previene scroll horizontal indeseado */
+}
+
+/* ---------------------------------------------------
+   UTILIDADES
+--------------------------------------------------- */
+.text-justify {
+  text-align: justify;
+}
+
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  color: #222;
+}
+
+h2 {
+  position: relative;
+  display: inline-block;
+}
+
+/* Subrayado decorativo para títulos H2 */
+h2::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 3px;
+  background: var(--color-principal);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+#nosotros h2::after, #servicios h2::after {
+    margin: 0.5rem auto 0; /* Centrado */
+}
+
+#objetivos h2::after {
+    margin: 0.5rem 0 0; /* Alineado a la izquierda */
+}
+
+/* ---------------------------------------------------
+   NAVBAR
+--------------------------------------------------- */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-principal) !important;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #555 !important;
+  margin-left: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-principal) !important;
+}
+
+/* ---------------------------------------------------
+   HERO SECTION
+--------------------------------------------------- */
+#inicio {
+  min-height: 90vh; /* Ocupa casi toda la pantalla */
+  padding-top: 4rem; /* Compensar navbar fija si es necesario */
+}
+
+#inicio h1 {
+  color: var(--color-principal);
+}
+
+.hero-img {
+  max-width: 80%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(232, 93, 63, 0.2) !important;
+}
+
+/* ---------------------------------------------------
+   LISTA DE OBJETIVOS
+--------------------------------------------------- */
+.custom-list li {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  color: #555;
+  display: flex;
+  align-items: flex-start;
+}
+
+.bullet-point {
+  color: var(--color-principal);
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+/* ---------------------------------------------------
+   TARJETAS DE SERVICIOS
+--------------------------------------------------- */
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.service-card .card-title {
+  color: var(--color-principal);
+  font-weight: 600;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-hover);
+  border-color: var(--color-hover);
+  transform: scale(1.02);
+}
+
+.btn-outline-primary {
+    color: var(--color-principal);
+    border-color: var(--color-principal);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------- */
+@media (max-width: 768px) {
+  #inicio {
+    text-align: center;
+    min-height: auto;
+    padding-bottom: 3rem;
+  }
+  
+  .hero-img {
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+
+  h2::after {
+    margin: 0.5rem auto 0 !important; /* Centrar subrayados en móvil */
+  }
+  
+  #objetivos .row {
+      text-align: center;
+  }
+  
+  .custom-list li {
+      justify-content: center; /* Centrar lista en móvil */
+      text-align: left; /* Pero mantener texto legible */
+  }
+}
+

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBalance | Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="mybalance.css">
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+        <div class="bg-white border-end" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                <i class="bi bi-heart-pulse-fill me-2"></i>MyBalance
+            </div>
+            <div class="list-group list-group-flush my-3">
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active" onclick="mostrarSeccion('imc', this)">
+                    <i class="bi bi-calculator me-2"></i>Cálculo IMC
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text" onclick="mostrarSeccion('agua', this)">
+                    <i class="bi bi-droplet-fill me-2"></i>Hidratación
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text" onclick="mostrarSeccion('habitos', this)">
+                    <i class="bi bi-check-circle-fill me-2"></i>Hábitos
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text" onclick="mostrarSeccion('recomendaciones', this)">
+                    <i class="bi bi-lightbulb-fill me-2"></i>Consejos
+                </a>
+                
+                <a href="krone.html" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold mt-5">
+                    <i class="bi bi-box-arrow-left me-2"></i>Volver a Krone
+                </a>
+            </div>
+        </div>
+
+        <div id="page-content-wrapper">
+            
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-list primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0 text-dark">Panel de Bienestar</h2>
+                </div>
+            </nav>
+
+            <div class="container-fluid px-4">
+
+                <section id="imc" class="seccion-content animate-fade-in">
+                    <div class="row g-3 my-2">
+                        <div class="col-md-6">
+                            <div class="p-4 bg-white shadow-sm d-flex justify-content-around align-items-center rounded h-100">
+                                <div>
+                                    <h3 class="fs-4">Calculadora IMC</h3>
+                                    <p class="text-muted">Índice de Masa Corporal</p>
+                                </div>
+                                <i class="bi bi-person-bounding-box fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Peso (kg)</label>
+                                        <input type="number" class="form-control" id="peso" placeholder="Ej: 70">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Estatura (m)</label>
+                                        <input type="number" class="form-control" id="estatura" step="0.01" placeholder="Ej: 1.75">
+                                    </div>
+                                    <button class="btn btn-primary w-100" onclick="calcularIMC()">Calcular</button>
+                                    
+                                    <div id="resultadoIMC" class="alert mt-3 d-none text-center fw-bold" role="alert"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="agua" class="seccion-content d-none animate-fade-in">
+                    <div class="row g-3 my-2">
+                        <div class="col-md-5">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-body text-center d-flex flex-column justify-content-center">
+                                    <i class="bi bi-water primary-text display-1 mb-3"></i>
+                                    <h4>Hidratación Diaria</h4>
+                                    <p class="text-muted">Calcula cuánta agua necesita tu cuerpo.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-body">
+                                    <label class="form-label">Tu Peso (kg)</label>
+                                    <div class="input-group mb-3">
+                                        <input type="number" class="form-control" id="pesoAgua" placeholder="Ej: 65">
+                                        <button class="btn btn-primary" onclick="calcularAgua()">Calcular</button>
+                                    </div>
+                                    <div id="resultadoAgua" class="alert alert-info d-none text-center" role="alert"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="habitos" class="seccion-content d-none animate-fade-in">
+                    <div class="row my-2">
+                        <div class="col-md-12">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Registro de Hábitos</h4>
+                                    <div class="input-group mb-4">
+                                        <input type="text" id="habitoTexto" class="form-control" placeholder="Ej: Leer 20 minutos...">
+                                        <button class="btn btn-success" onclick="registrarHabito()">
+                                            <i class="bi bi-plus-lg"></i> Agregar
+                                        </button>
+                                    </div>
+                                    <ul id="listaHabitos" class="list-group list-group-flush">
+                                        <li class="list-group-item text-muted fst-italic text-center" id="empty-msg">No hay hábitos registrados hoy.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="recomendaciones" class="seccion-content d-none animate-fade-in">
+                    <div class="row my-2">
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-moon-stars-fill fs-1 text-primary mb-3 d-block"></i>
+                                    <h5 class="card-title">Descanso</h5>
+                                    <p class="card-text">Intenta dormir entre 7 y 8 horas diarias para recuperar energía.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-activity fs-1 text-success mb-3 d-block"></i>
+                                    <h5 class="card-title">Movimiento</h5>
+                                    <p class="card-text">Realiza al menos 30 minutos de actividad física moderada.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-egg-fried fs-1 text-warning mb-3 d-block"></i>
+                                    <h5 class="card-title">Nutrición</h5>
+                                    <p class="card-text">Prioriza alimentos naturales y evita procesados en exceso.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Toggle del Sidebar
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+
+        // Navegación
+        function mostrarSeccion(id, elementoLink) {
+            // Ocultar todas las secciones
+            document.querySelectorAll(".seccion-content").forEach(sec => sec.classList.add("d-none"));
+            // Mostrar la seleccionada
+            document.getElementById(id).classList.remove("d-none");
+
+            // Manejo de clase 'active' en el menú
+            document.querySelectorAll(".list-group-item").forEach(item => {
+                item.classList.remove("active");
+                item.classList.add("bg-transparent");
+            });
+            elementoLink.classList.add("active");
+            elementoLink.classList.remove("bg-transparent");
+        }
+
+        /* Función IMC mejorada */
+        function calcularIMC() {
+            const peso = parseFloat(document.getElementById("peso").value);
+            const est = parseFloat(document.getElementById("estatura").value);
+            const resultadoDiv = document.getElementById("resultadoIMC");
+
+            if (!peso || !est) {
+                resultadoDiv.className = "alert alert-danger mt-3 text-center";
+                resultadoDiv.innerText = "Por favor ingresa valores válidos.";
+                resultadoDiv.classList.remove("d-none");
+                return;
+            }
+
+            const imc = peso / (est * est);
+            let mensaje = "";
+            let colorClass = "";
+
+            if (imc < 18.5) { mensaje = "Bajo peso"; colorClass = "alert-warning"; }
+            else if (imc < 25) { mensaje = "Peso Normal"; colorClass = "alert-success"; }
+            else if (imc < 30) { mensaje = "Sobrepeso"; colorClass = "alert-warning"; }
+            else { mensaje = "Obesidad"; colorClass = "alert-danger"; }
+
+            resultadoDiv.className = `alert ${colorClass} mt-3 text-center fw-bold`;
+            resultadoDiv.innerText = `IMC: ${imc.toFixed(2)} - ${mensaje}`;
+            resultadoDiv.classList.remove("d-none");
+        }
+
+        /* Función Agua mejorada */
+        function calcularAgua() {
+            const peso = parseFloat(document.getElementById("pesoAgua").value);
+            const resDiv = document.getElementById("resultadoAgua");
+
+            if (!peso) {
+                resDiv.innerText = "Ingresa un peso válido.";
+                resDiv.classList.remove("d-none", "alert-info");
+                resDiv.classList.add("alert-danger");
+                return;
+            }
+
+            const agua = peso * 0.035;
+            resDiv.innerHTML = `Meta diaria: <strong>${agua.toFixed(2)} litros</strong>`;
+            resDiv.classList.remove("d-none", "alert-danger");
+            resDiv.classList.add("alert-info");
+        }
+
+        /* Hábitos con botón eliminar */
+        function registrarHabito() {
+            const input = document.getElementById("habitoTexto");
+            const texto = input.value.trim();
+            const lista = document.getElementById("listaHabitos");
+            const emptyMsg = document.getElementById("empty-msg");
+
+            if (texto === "") return;
+
+            if(emptyMsg) emptyMsg.style.display = 'none';
+
+            const li = document.createElement("li");
+            li.className = "list-group-item d-flex justify-content-between align-items-center animate-fade-in";
+            li.innerHTML = `
+                ${texto}
+                <button class="btn btn-sm btn-outline-danger" onclick="this.parentElement.remove()">
+                    <i class="bi bi-trash"></i>
+                </button>
+            `;
+
+            lista.appendChild(li);
+            input.value = "";
+        }
+    </script>
+</body>
+</html>

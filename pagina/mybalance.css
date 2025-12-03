@@ -1,0 +1,152 @@
+/* ---------------------------------------------------
+   VARIABLES Y BASE (Coincide con Krone)
+--------------------------------------------------- */
+:root {
+    --main-bg-color: #e85d3f;  /* Color Principal */
+    --main-text-color: #e85d3f;
+    --second-text-color: #bbbec5;
+    --second-bg-color: #fdf2ee;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f6f8;
+    overflow-x: hidden;
+}
+
+/* ---------------------------------------------------
+   SIDEBAR & WRAPPER
+--------------------------------------------------- */
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+    width: 15rem;
+    position: fixed; /* Fijo en desktop */
+    z-index: 1000;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    color: var(--main-text-color);
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+/* Contenido Principal */
+#page-content-wrapper {
+    width: 100%;
+    margin-left: 0; 
+    transition: margin 0.25s ease-out;
+}
+
+/* Clases de estado activo en menú */
+.list-group-item {
+    border: none;
+    padding: 20px 30px;
+    font-weight: 500;
+}
+
+.list-group-item.active {
+    background-color: var(--second-bg-color) !important; /* Fondo suave */
+    color: var(--main-text-color) !important; /* Texto naranja */
+    font-weight: bold;
+    border-left: 5px solid var(--main-text-color);
+}
+
+.list-group-item:hover {
+    color: var(--main-text-color);
+}
+
+/* Colores personalizados */
+.primary-text {
+    color: var(--main-text-color);
+}
+
+.secondary-bg {
+    background-color: var(--second-bg-color);
+}
+
+/* ---------------------------------------------------
+   BOTONES Y ELEMENTOS
+--------------------------------------------------- */
+.btn-primary {
+    background-color: var(--main-bg-color);
+    border-color: var(--main-bg-color);
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #cf4c30;
+    border-color: #cf4c30;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+/* Cards Estilizadas */
+.card {
+    border-radius: 15px;
+}
+
+.rounded-full {
+    border-radius: 50%;
+}
+
+/* Animación suave al cambiar sección */
+.animate-fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------
+   MEDIA QUERIES (RESPONSIVE)
+--------------------------------------------------- */
+/* Desktop: El sidebar se muestra fijo y empuja el contenido */
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+        position: fixed; 
+    }
+
+    #page-content-wrapper {
+        margin-left: 15rem; /* Deja espacio para el sidebar */
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem; /* Ocultar sidebar */
+    }
+    
+    #wrapper.toggled #page-content-wrapper {
+        margin-left: 0; /* Contenido ocupa todo */
+    }
+    
+    /* Ocultar botón de menú en pantallas muy grandes si se desea, 
+       pero es útil dejarlo para dar más espacio */
+}
+
+/* Mobile: El sidebar empieza oculto */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+    
+    /* Cuando se activa 'toggled' en móvil, mostramos el sidebar sobre el contenido */
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+}
