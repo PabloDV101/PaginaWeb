@@ -1,0 +1,85 @@
+:root {
+    --main-bg-color: #e85d3f;
+    --second-bg-color: #fdf2ee;
+    --text-dark: #333;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f6f8;
+    overflow-x: hidden;
+}
+
+/* OVERLAY DE CONFIGURACIÓN INICIAL */
+#setup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--main-bg-color); /* Fondo naranja */
+    z-index: 9999; /* Por encima de todo */
+}
+
+/* SIDEBAR */
+#wrapper { overflow-x: hidden; }
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+    width: 15rem;
+    position: fixed;
+    z-index: 1000;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    color: var(--main-bg-color);
+}
+
+#page-content-wrapper {
+    width: 100%;
+    margin-left: 0;
+    transition: margin 0.25s ease-out;
+    padding-bottom: 50px;
+}
+
+/* ESTADOS DE MENÚ */
+.list-group-item { border: none; padding: 20px 30px; font-weight: 500; }
+.list-group-item.active {
+    background-color: var(--second-bg-color) !important;
+    color: var(--main-bg-color) !important;
+    border-right: 5px solid var(--main-bg-color);
+    font-weight: 700;
+}
+
+.primary-text { color: var(--main-bg-color); }
+
+/* BOTONES Y INPUTS */
+.btn-primary {
+    background-color: var(--main-bg-color);
+    border-color: var(--main-bg-color);
+}
+.btn-primary:hover {
+    background-color: #cf4c30;
+    border-color: #cf4c30;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+    #sidebar-wrapper { margin-left: 0; }
+    #page-content-wrapper { margin-left: 15rem; }
+    #wrapper.toggled #sidebar-wrapper { margin-left: -15rem; }
+    #wrapper.toggled #page-content-wrapper { margin-left: 0; }
+}
+
+@media (max-width: 768px) {
+    #sidebar-wrapper { margin-left: -15rem; }
+    #wrapper.toggled #sidebar-wrapper { margin-left: 0; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+}
+
+/* ANIMACIONES */
+.animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

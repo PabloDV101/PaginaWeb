@@ -1,6 +1,6 @@
-/* ---------------------------------------------------
+/*   
    VARIABLES Y CONFIGURACIÓN BASE
---------------------------------------------------- */
+ */
 :root {
   --color-principal: #e85d3f;    /* Rojo-naranja marca */
   --color-hover: #cf4c30;        /* Variación oscura para hover */
@@ -16,9 +16,9 @@ body {
   overflow-x: hidden; /* Previene scroll horizontal indeseado */
 }
 
-/* ---------------------------------------------------
+/*   
    UTILIDADES
---------------------------------------------------- */
+ */
 .text-justify {
   text-align: justify;
 }
@@ -57,9 +57,9 @@ h2::after {
     margin: 0.5rem 0 0; /* Alineado a la izquierda */
 }
 
-/* ---------------------------------------------------
+/*   
    NAVBAR
---------------------------------------------------- */
+ */
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: 700;
@@ -77,9 +77,9 @@ h2::after {
   color: var(--color-principal) !important;
 }
 
-/* ---------------------------------------------------
+/*   
    HERO SECTION
---------------------------------------------------- */
+ */
 #inicio {
   min-height: 90vh; /* Ocupa casi toda la pantalla */
   padding-top: 4rem; /* Compensar navbar fija si es necesario */
@@ -95,9 +95,9 @@ h2::after {
   box-shadow: 0 10px 30px rgba(232, 93, 63, 0.2) !important;
 }
 
-/* ---------------------------------------------------
+/*   
    LISTA DE OBJETIVOS
---------------------------------------------------- */
+ */
 .custom-list li {
   margin-bottom: 1rem;
   font-size: 1.05rem;
@@ -114,9 +114,9 @@ h2::after {
   line-height: 1.2rem;
 }
 
-/* ---------------------------------------------------
+/*   
    TARJETAS DE SERVICIOS
---------------------------------------------------- */
+ */
 .service-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 15px;
@@ -158,9 +158,9 @@ h2::after {
     color: white;
 }
 
-/* ---------------------------------------------------
+/*   
    RESPONSIVE
---------------------------------------------------- */
+ */
 @media (max-width: 768px) {
   #inicio {
     text-align: center;
